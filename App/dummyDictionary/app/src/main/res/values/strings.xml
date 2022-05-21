@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">DummyDictionary</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_word">Agregar nueva palabra</string>
+    <string name="text_definition">Agregar nueva definicion</string>
+    <string name="user">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="text">Agregar</string>
+</resources>
