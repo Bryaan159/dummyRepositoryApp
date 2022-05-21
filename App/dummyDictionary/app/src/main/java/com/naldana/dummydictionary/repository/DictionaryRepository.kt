@@ -13,7 +13,9 @@ class DictionaryRepository(
     private val api:WordService,
 ){
     private val wordDoa = database.wordDao()
+
     suspend fun getAllWords():ApiResponse<LiveData<List<Word>>> {
+
         return try{
             val response = api.getAllWord()
             //Use Database as cache
@@ -28,7 +30,7 @@ class DictionaryRepository(
         }
 
     }
-    suspend fun addWord(word:Word){
+    suspend fun addWord(word:List<Word>){
         wordDoa.insertWord(word)
     }
 }

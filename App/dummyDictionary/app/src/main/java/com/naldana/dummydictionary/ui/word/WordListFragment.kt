@@ -1,6 +1,7 @@
 package com.naldana.dummydictionary.ui.word
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,14 +12,16 @@ import androidx.navigation.fragment.findNavController
 import com.naldana.dummydictionary.DummyDictionaryApplication
 import com.naldana.dummydictionary.R
 import com.naldana.dummydictionary.adapter.WordAdapter
+import com.naldana.dummydictionary.data.model.Word
 import com.naldana.dummydictionary.databinding.FragmentWordListBinding
 import com.naldana.dummydictionary.viewmodel.WordViewModel
 import com.naldana.dummydictionary.viewmodel.ViewModelFactory
+import com.naldana.dummydictionary.viewmodel.WordUiState
 
 class WordListFragment : Fragment() {
     private val viewModelFactory by lazy {
         val application = requireActivity().application as DummyDictionaryApplication
-        ViewModelFactory(application.getDictionaryRepository())
+        ViewModelFactory(application.getDictionartyRepository())
     }
     private val viewModel: WordViewModel by viewModels {
         viewModelFactory
@@ -43,18 +46,32 @@ class WordListFragment : Fragment() {
             adapter = wordAdapter
         }
 
-        viewModel.words.observe(viewLifecycleOwner) { data ->
+        viewModel.getAllWords()
+
+        viewModel.status.observe(viewLifecycleOwner) { status ->
+            when(status){
+                is WordUiState.Error -> Log.d("Word List Status","Error",status.exception)
+                WordUiState.Loading -> Log.d("Word List Status","Loading")
+                is WordUiState.Success -> status.word.observe(viewLifecycleOwner){ data ->
+                    wordAdapter.setData(data)
+                }
+            }
+        }
+    }
+
+    private fun handleSuccess(status:WordUiState.Success, wordAdapter: WordAdapter) {
+        status.word.observe(viewLifecycleOwner){data ->
             wordAdapter.setData(data)
         }
+    }
 
-        val navController = findNavController()
+    /*
+    val navController = findNavController()
         binding.actionAddWord.setOnClickListener {
             val action = WordListFragmentDirections.actionWordListFragmentToAddWordFragment()
             navController.navigate(action)
         }
 
-
-    }
-
+    }*/
 
 }

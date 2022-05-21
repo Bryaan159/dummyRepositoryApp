@@ -10,6 +10,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.naldana.dummydictionary.DummyDictionaryApplication
 import com.naldana.dummydictionary.MainActivity
 import com.naldana.dummydictionary.R
+import com.naldana.dummydictionary.databinding.ActivityLoginBinding
 import com.naldana.dummydictionary.viewmodel.ViewModelFactory
 
 class LoginActivity:AppCompatActivity(){

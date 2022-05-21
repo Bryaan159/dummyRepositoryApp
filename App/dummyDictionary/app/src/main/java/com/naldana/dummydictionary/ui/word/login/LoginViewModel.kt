@@ -8,6 +8,7 @@ import com.naldana.dummydictionary.network.ApiResponse
 import com.naldana.dummydictionary.repository.LoginRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class LoginViewModel(private val repository: LoginRepository):ViewModel(){
 //    Cajita de entrada para el Login
@@ -26,7 +27,7 @@ class LoginViewModel(private val repository: LoginRepository):ViewModel(){
                     passwordField.value.toString()
                 )){
                     is ApiResponse.Error -> LoginUIStatus.Error(response.exception)
-                    is ApiResponse.ErrorWithMessage -> LoginUIStatus.Resume
+                    is ApiResponse.ErrorWithMessage -> LoginUIStatus.Error(Exception(response.message))
                     is ApiResponse.Success -> LoginUIStatus.Success(response.data)
                 }
             )
