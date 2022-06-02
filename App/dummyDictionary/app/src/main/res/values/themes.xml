@@ -14,7 +14,7 @@
     </style>
         <!-- Customize your theme here. -->
 
-    <style name="Theme.DummyDictionary.NoActionBar" parent="Theme.DummyDictionary">
+    <style name="Theme.DummyDictionary.NoActionBar" parent="@style/Theme.DummyDictionary">
             <item name="windowActionBar">false</item>
             <item name="windowNoTitle">true</item>
     </style>

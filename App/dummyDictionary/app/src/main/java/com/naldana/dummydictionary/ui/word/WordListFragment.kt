@@ -49,21 +49,30 @@ class WordListFragment : Fragment() {
         viewModel.getAllWords()
 
         viewModel.status.observe(viewLifecycleOwner) { status ->
-            when(status){
-                is WordUiState.Error -> Log.d("Word List Status","Error",status.exception)
-                WordUiState.Loading -> Log.d("Word List Status","Loading")
-                is WordUiState.Success -> status.word.observe(viewLifecycleOwner){ data ->
+            when (status) {
+                is WordUiState.Error -> Log.d("word list status", "Error",status.exception)
+                WordUiState.Loading -> Log.d("word list status", "Loading")
+                is WordUiState.Success -> status.word.observe(viewLifecycleOwner) { data ->
                     wordAdapter.setData(data)
                 }
             }
         }
+
+        val navController = findNavController()
+        binding.actionAddWord.setOnClickListener {
+            val action = WordListFragmentDirections.actionWordListFragmentToAddWordFragment()
+            navController.navigate(action)
+        }
+
+
     }
 
-    private fun handleSuccess(status:WordUiState.Success, wordAdapter: WordAdapter) {
+    /*private fun handleSuccess(status:WordUiState.Success, wordAdapter: WordAdapter) {
         status.word.observe(viewLifecycleOwner){data ->
             wordAdapter.setData(data)
         }
-    }
+    }*/
+
 
     /*
     val navController = findNavController()

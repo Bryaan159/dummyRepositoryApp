@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/wordListFragment"
+        android:title="Inicio"
+        android:icon="@drawable/ic_baseline_home" />
+<!--no tiene id en el navGraph-->
+
+    <item
+        android:id="@+id/testFragment"
+        android:title="Test"
+        android:icon="@drawable/ic_baseline_check_circle_outline" />
+
+    <item
+        android:id="@+id/logOut"
+        android:title="LogOut"
+        android:icon="@drawable/ic_baseline_close" />
+
+
+
+
+
+</menu>

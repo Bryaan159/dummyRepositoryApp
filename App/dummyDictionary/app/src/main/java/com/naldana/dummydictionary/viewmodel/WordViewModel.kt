@@ -11,6 +11,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class WordViewModel(private val repository: DictionaryRepository): ViewModel() {
+    val term = MutableLiveData("")
+    val definition = MutableLiveData("")
+
     private val _status = MutableLiveData<WordUiState>(WordUiState.Loading)
     val status:LiveData<WordUiState>
         get() = _status
@@ -33,4 +36,5 @@ class WordViewModel(private val repository: DictionaryRepository): ViewModel() {
             repository.addWord(word)
         }
     }
+
 }
